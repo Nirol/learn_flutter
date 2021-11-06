@@ -7,15 +7,15 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
-  void answerQuestion() {
-    setState(() => questionIndex += 1);
+  void _answerQuestion() {
+    setState(() => _questionIndex += 1);
   }
 
   var questions = ['question 1', 'question2'];
@@ -29,14 +29,14 @@ class MyAppState extends State<MyApp> {
         body: Column(
           children: <Widget>[
             Text(
-              questions.elementAt(questionIndex),
+              questions.elementAt(_questionIndex),
             ),
             ElevatedButton(
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
               child: Text('button text'),
             ),
             ElevatedButton(
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
               child: Text('button text'),
             ),
           ],
