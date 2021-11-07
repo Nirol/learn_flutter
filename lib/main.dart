@@ -20,7 +20,17 @@ class _MyAppState extends State<MyApp> {
     setState(() => _questionIndex += 1);
   }
 
-  var questions = ['question 1', 'question2'];
+  var questions = [
+    {
+      'question': 'how are you doing?',
+      'answers': ['a', 'b', 'c'],
+    },
+    {
+      'question': 'what is your favorite color?',
+      'answers': ['bb', 'cc', 'dd'],
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,11 +41,12 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: <Widget>[
             Question(
-              questions.elementAt(_questionIndex),
+              questions.elementAt(_questionIndex)['question'],
             ),
-            Answer('answer1', _answerQuestion),
-            Answer('answer2', _answerQuestion),
-            Answer('answer3', _answerQuestion)
+            ...(questions.elementAt(_questionIndex)['answers'] as List<String>)
+                .map((answer) {
+              return Answer(answer, _answerQuestion);
+            }).toList()
           ],
         ),
       ),
