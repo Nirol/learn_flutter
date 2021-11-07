@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     setState(() => _questionIndex += 1);
   }
 
-  var questions = [
+  static const questions = const [
     {
       'question': 'how are you doing?',
       'answers': ['a', 'b', 'c'],
@@ -30,7 +30,6 @@ class _MyAppState extends State<MyApp> {
       'answers': ['bb', 'cc', 'dd'],
     },
   ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
