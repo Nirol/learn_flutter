@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     setState(() => _questionIndex += 1);
   }
 
-  static const questions = const [
+  final questions = const [
     {
       'question': 'how are you doing?',
       'answers': ['a', 'b', 'c'],
@@ -37,17 +37,22 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('My First App'),
         ),
-        body: Column(
-          children: <Widget>[
-            Question(
-              questions.elementAt(_questionIndex)['question'],
-            ),
-            ...(questions.elementAt(_questionIndex)['answers'] as List<String>)
-                .map((answer) {
-              return Answer(answer, _answerQuestion);
-            }).toList()
-          ],
-        ),
+        body: _questionIndex < questions.length
+            ? Column(
+                children: <Widget>[
+                  Question(
+                    questions.elementAt(_questionIndex)['question'],
+                  ),
+                  ...(questions.elementAt(_questionIndex)['answers']
+                          as List<String>)
+                      .map((answer) {
+                    return Answer(answer, _answerQuestion);
+                  }).toList()
+                ],
+              )
+            : Center(
+                child: Text('you did it!'),
+              ),
       ),
     );
   }
