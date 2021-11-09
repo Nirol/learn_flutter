@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
   final String answerText;
-  final Function selectAnswerHandler;
+  final VoidCallback selectAnswerHandler;
 
   Answer(this.answerText, this.selectAnswerHandler);
   @override

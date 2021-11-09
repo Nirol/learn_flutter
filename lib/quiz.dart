@@ -4,7 +4,7 @@ import '/answer.dart';
 
 class Quiz extends StatelessWidget {
   final List<Map<String, Object>> questions;
-  final VoidCallback answerQuestion;
+  final Function(int) answerQuestion;
   final int questionIndex;
   Quiz(
       {@required this.questions,
@@ -17,9 +17,10 @@ class Quiz extends StatelessWidget {
         Question(
           questions.elementAt(questionIndex)['question'],
         ),
-        ...(questions.elementAt(questionIndex)['answers'] as List<String>)
+        ...(questions.elementAt(questionIndex)['answers']
+                as List<Map<String, Object>>)
             .map((answer) {
-          return Answer(answer, answerQuestion);
+          return Answer(answer['text'], () => answerQuestion(answer['score']));
         }).toList()
       ],
     );
