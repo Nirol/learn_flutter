@@ -1,6 +1,6 @@
-import '/question.dart';
 import 'package:flutter/material.dart';
-import '/answer.dart';
+import '/quiz.dart';
+import '/result.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     setState(() => _questionIndex += 1);
   }
 
-  final questions = const [
+  final _questions = const [
     {
       'question': 'how are you doing?',
       'answers': ['a', 'b', 'c'],
@@ -34,26 +34,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('My First App'),
-        ),
-        body: _questionIndex < questions.length
-            ? Column(
-                children: <Widget>[
-                  Question(
-                    questions.elementAt(_questionIndex)['question'],
-                  ),
-                  ...(questions.elementAt(_questionIndex)['answers']
-                          as List<String>)
-                      .map((answer) {
-                    return Answer(answer, _answerQuestion);
-                  }).toList()
-                ],
-              )
-            : Center(
-                child: Text('you did it!'),
-              ),
-      ),
+          appBar: AppBar(
+            title: Text('My First App'),
+          ),
+          body: _questionIndex < _questions.length
+              ? Quiz(
+                  questions: _questions,
+                  answerQuestion: _answerQuestion,
+                  questionIndex: _questionIndex)
+              : Result()),
     );
   }
 }
