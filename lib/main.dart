@@ -21,6 +21,13 @@ class _MyAppState extends State<MyApp> {
     _totalScore += score;
   }
 
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   final _questions = const [
     {
       'question': 'how are you doing?',
@@ -50,8 +57,9 @@ class _MyAppState extends State<MyApp> {
               ? Quiz(
                   questions: _questions,
                   answerQuestion: _answerQuestion,
-                  questionIndex: _questionIndex)
-              : Result(_totalScore)),
+                  questionIndex: _questionIndex,
+                )
+              : Result(_totalScore, _resetQuiz)),
     );
   }
 }
